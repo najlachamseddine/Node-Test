@@ -159,8 +159,8 @@ export const updateUser = async (req, res, next) => {
     try {
 
        const { userId } = req.params
-       const updatedUser = await User.findByIdAndUpdate(userId,{ $set: req.body },{ new: true })
-       res.status(200).json({ result: updatedUser, message: 'Role updated successfully', success: true })
+       const updatedUser = await User.findByIdAndUpdate(userId, { $set: req.body }, { new: true })
+       res.status(200).json({ result: updatedUser, message: 'User updated successfully', success: true })
 
     } catch (err) {
         next(createError(500, err.message))
