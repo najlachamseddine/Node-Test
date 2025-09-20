@@ -48,14 +48,12 @@ export const verifyManager = (req, res, next) => {
 
 export const verifyIsSameUser = (req, res, next) => {
     try {
-        verifyToken(req, res, async () => {
             const { userId } = req.params
-            if (userId === req.user._id.toString() || req.user.role == ('manager' || 'super_admin')) {
+            if (userId === req.user._id || req.user.role == ('manager' || 'super_admin')) {
                 next();
             } else {
                 next(createError(403, 'Only same user can access this route'))
             }
-        });
     } catch (err) {
         next(createError(500, err.message));
     }
